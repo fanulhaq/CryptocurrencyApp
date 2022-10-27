@@ -35,7 +35,7 @@ class NetworkConnectionInterceptor(
 
     inner class NoConnectionException : IOException() {
         override val message: String
-            get() = "No Internet Connection"
+            get() = "Couldn't reach server. Check your internet connection!"
     }
 
     @Suppress("DEPRECATION")

@@ -1,5 +1,6 @@
 package com.muchi.cryptocurrency.domain.use_case
 
+import android.util.Log
 import com.muchi.cryptocurrency.common.Resource
 import com.muchi.cryptocurrency.data.remote.dto.toCoinDetail
 import com.muchi.cryptocurrency.domain.model.CoinDetail
@@ -16,12 +17,13 @@ class GetCoinUseCase @Inject constructor(
     operator fun invoke(coinId: String): Flow<Resource<CoinDetail>> = flow {
         try {
             emit(Resource.Loading())
+            Log.d("asasasasasa", "invoke: $coinId")
             val coin = repository.getCoinById(coinId).toCoinDetail()
             emit(Resource.Success(coin))
         } catch(e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occured"))
+            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred"))
         } catch(e: IOException) {
-            emit(Resource.Error("Couldn't reach server. Check your internet connection."))
+            emit(Resource.Error(e.message ?: "An unexpected error occurred"))
         }
     }
 }

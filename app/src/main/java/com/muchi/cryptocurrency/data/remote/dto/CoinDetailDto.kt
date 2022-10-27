@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.muchi.cryptocurrency.domain.model.CoinDetail
 
 data class CoinDetailDto(
-    val description: String,
+    val description: String?,
     @SerializedName("development_status")
     val developmentStatus: String,
     @SerializedName("first_data_at")
@@ -35,8 +35,8 @@ data class CoinDetailDto(
     @SerializedName("started_at")
     val startedAt: String,
     val symbol: String,
-    val tags: List<Tag>,
-    val team: List<TeamMember>,
+    val tags: List<Tag>?,
+    val team: List<TeamMember>?,
     val type: String,
     val whitepaper: Whitepaper
 )
@@ -49,7 +49,7 @@ fun CoinDetailDto.toCoinDetail(): CoinDetail {
         symbol = symbol,
         rank = rank,
         isActive = isActive,
-        tags = tags.map { it.name },
+        tags = tags?.map { it.name },
         team = team
     )
 }

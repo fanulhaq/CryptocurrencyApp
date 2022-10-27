@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2022 - Irfanul Haq.
+ */
+
 package com.muchi.cryptocurrency.di
 
 import com.muchi.cryptocurrency.data.remote.CoinPaprikaApi
